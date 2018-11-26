@@ -2,28 +2,27 @@ package com.zeldan.model;
 
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "ACCOUNT")
 public class Account {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
+    @Column(name = "PASSWORD")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
+    @Column(name = "ENABLED")
     private boolean enabled = true;
 
     public Account() {
